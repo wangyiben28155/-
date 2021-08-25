@@ -5,7 +5,7 @@ export what
 using Distributions, Random
 import Base.@kwdef
 
-const L, num = (10, 1000)
+const L, num, particle, time = (10, 1000, 100, 8)
 
 abstract type AbstractDatalist{T <: AbstractFloat,V <: Integer} end
 
@@ -15,9 +15,9 @@ abstract type AbstractDatalist{T <: AbstractFloat,V <: Integer} end
 
 end
 
-@kwdef mutable struct Liquid{T,V}  <: AbstractDatalist{T,V}
-    location::Matrix{T} = zeros()
-    Potential::Matrix{T} = zeros()
+@kwdef mutable struct Liquid{T}  <: AbstractDatalist{T,V}
+    location::Matrix{T} = zeros((time, particle))
+    Potential::Matrix{T} = zeros((time, num))
 
 end
 
